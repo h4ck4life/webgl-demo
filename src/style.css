@@ -1,11 +1,4 @@
-p {
-  text-align: center;
-  width: 100px;
-  font-family: sans-serif;
-  pointer-events: none;
-  background-color: papayawhip;
-  color: dimgrey;
-  padding: 5px;
-  border-radius: 5px;
-  font-size: 15px;
+body {
+  margin: 0;
+  padding: 0;
 }
