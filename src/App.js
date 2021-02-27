@@ -15,7 +15,7 @@ import "./style.css";
 export default function App() {
   return (
     <div style={{ height: "100vh", width: "100vw" }}>
-      <Canvas>
+      <Canvas style={{backgroundColor: 'black'}}>
         <Suspense fallback={null}>
           <group>
             <Terrain />
