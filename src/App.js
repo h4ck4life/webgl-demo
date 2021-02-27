@@ -29,7 +29,7 @@ export default function App() {
           makeDefault
         />
         <OrbitControls
-          maxPolarAngle={Math.PI / 2}
+          maxPolarAngle={(Math.PI / 2) - 0.1}
           minDistance={0.2}
           autoRotateSpeed={0.7}
           autoRotate={true}
