@@ -1,6 +1,7 @@
 import React, { Suspense } from "react";
-import { Canvas } from "react-three-fiber";
+import { Canvas, useLoader } from "react-three-fiber";
 import { DoubleSide, RepeatWrapping, sRGBEncoding, LinearFilter } from "three";
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import {
   Loader,
   OrbitControls,
@@ -19,6 +20,7 @@ export default function App() {
         <Suspense fallback={null}>
           <group>
             <Terrain />
+            <Asset url="/mech_drone/scene.gltf" />
           </group>
           <ambientLight />
         </Suspense>
@@ -26,6 +28,7 @@ export default function App() {
           position={[0.5, 0.2, 0.2]}
           near={0.01}
           far={1000}
+          //fov={25}
           makeDefault
         />
         <OrbitControls
@@ -41,7 +44,19 @@ export default function App() {
   );
 }
 
+function Asset({ url }) {
+  const gltf = useLoader(GLTFLoader, url)
+  return (
+    <mesh
+      position={[0, 0.05, 0.18]}
+      rotation={[0, 0, 0]}
+      scale={[0.25 / 1024, 0.25 / 1024, 0.25 / 1024]}
+    >
+      <primitive object={gltf.scene} />
+    </mesh>
+  );
 
+}
 
 function Terrain() {
   // Load the heightmap image
