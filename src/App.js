@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import { Canvas } from "react-three-fiber";
-import { DoubleSide, RepeatWrapping, sRGBEncoding } from "three";
+import { DoubleSide, RepeatWrapping, sRGBEncoding, LinearFilter } from "three";
 import {
   Loader,
   OrbitControls,
@@ -53,6 +53,7 @@ function Terrain() {
   textureMap.wrapS = RepeatWrapping;
   textureMap.wrapT = RepeatWrapping;
   textureMap.anisotropy = 16;
+  textureMap.minFilter = LinearFilter;
 
   return (
     <mesh
