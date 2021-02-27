@@ -35,9 +35,11 @@ export default function App() {
   );
 }
 
+
+
 function Terrain() {
   // Load the heightmap image
-  const heightMap = useTexture("/keriang_shader.png");
+  const heightMap = useTexture('/keriang_shader.png');
   // Apply some properties to ensure it renders correctly
   heightMap.encoding = sRGBEncoding;
   heightMap.wrapS = RepeatWrapping;
