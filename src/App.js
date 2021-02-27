@@ -15,7 +15,7 @@ import "./style.css";
 export default function App() {
   return (
     <div style={{ height: "100vh", width: "100vw" }}>
-      <Canvas style={{backgroundColor: 'black'}}>
+      <Canvas style={{ backgroundColor: 'black' }}>
         <Suspense fallback={null}>
           <group>
             <Terrain />
@@ -28,7 +28,13 @@ export default function App() {
           far={1000}
           makeDefault
         />
-        <OrbitControls autoRotateSpeed={0.7} autoRotate={true} maxDistance={1} screenSpacePanning={false} />
+        <OrbitControls
+          maxPolarAngle={Math.PI / 2}
+          minDistance={0.2}
+          autoRotateSpeed={0.7}
+          autoRotate={true}
+          maxDistance={1}
+          screenSpacePanning={false} />
       </Canvas>
       <Loader />
     </div>
