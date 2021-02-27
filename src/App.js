@@ -58,9 +58,9 @@ function Model({ url }) {
   }, [])
   return (
     <mesh
-      position={[0, 0.05, 0.18]}
+      position={[0, 0.05, 0.15]}
       rotation={[0, 0, 0]}
-      scale={[0.25 / 1024, 0.25 / 1024, 0.25 / 1024]}
+      scale={[0.15 / 1024, 0.15 / 1024, 0.15 / 1024]}
     >
       <group ref={group} dispose={null}>
         <primitive
