@@ -1,12 +1,13 @@
-import React, { Suspense } from "react";
-import { Canvas, useLoader } from "react-three-fiber";
+import React, { Suspense, useState, useRef, useEffect } from "react";
+import { Canvas, useLoader, useFrame } from "react-three-fiber";
 import { DoubleSide, RepeatWrapping, sRGBEncoding, LinearFilter } from "three";
+import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import {
   Loader,
   OrbitControls,
   useTexture,
-  PerspectiveCamera
+  PerspectiveCamera,
 } from "@react-three/drei";
 
 import { vertexShader, fragmentShader } from "./shaders";
@@ -20,7 +21,7 @@ export default function App() {
         <Suspense fallback={null}>
           <group>
             <Terrain />
-            <Asset url="/mech_drone/scene.gltf" />
+            <Model url="/mech_drone/scene.gltf" />
           </group>
           <ambientLight />
         </Suspense>
@@ -44,18 +45,32 @@ export default function App() {
   );
 }
 
-function Asset({ url }) {
-  const gltf = useLoader(GLTFLoader, url)
+function Model({ url }) {
+  const group = useRef()
+  const { nodes, scene, materials, animations } = useLoader(GLTFLoader, url)
+  const actions = useRef()
+  const [mixer] = useState(() => new THREE.AnimationMixer())
+  useFrame((state, delta) => mixer.update(delta))
+  useEffect(() => {
+    actions.current = { idle: mixer.clipAction(animations[0], group.current) }
+    actions.current.idle.play()
+    return () => animations.forEach((clip) => mixer.uncacheClip(clip))
+  }, [])
   return (
     <mesh
       position={[0, 0.05, 0.18]}
       rotation={[0, 0, 0]}
       scale={[0.25 / 1024, 0.25 / 1024, 0.25 / 1024]}
     >
-      <primitive object={gltf.scene} />
+      <group ref={group} dispose={null}>
+        <primitive
+          ref={group}
+          name="Object_0"
+          object={nodes["RootNode"]}
+        />
+      </group>
     </mesh>
-  );
-
+  )
 }
 
 function Terrain() {
