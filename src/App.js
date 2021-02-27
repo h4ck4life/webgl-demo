@@ -28,7 +28,7 @@ export default function App() {
           far={1000}
           makeDefault
         />
-        <OrbitControls autoRotate={true} maxDistance={1} screenSpacePanning={false} />
+        <OrbitControls autoRotateSpeed={0.7} autoRotate={true} maxDistance={1} screenSpacePanning={false} />
       </Canvas>
       <Loader />
     </div>
