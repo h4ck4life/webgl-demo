@@ -23,7 +23,7 @@ export default function App() {
           <ambientLight />
         </Suspense>
         <PerspectiveCamera
-          position={[0.5, 0.5, 0.5]}
+          position={[0.5, 0.2, 0.2]}
           near={0.01}
           far={1000}
           makeDefault
