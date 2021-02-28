@@ -21,7 +21,7 @@ export default function App() {
         <Suspense fallback={null}>
           <group>
             <Terrain />
-            <Model url="/mech_drone/scene.gltf" />
+            <Model url="/animated_flag/scene.gltf" />
           </group>
           <ambientLight />
         </Suspense>
@@ -35,8 +35,8 @@ export default function App() {
         <OrbitControls
           maxPolarAngle={(Math.PI / 2) - 0.1}
           minDistance={0.2}
-          autoRotateSpeed={0.7}
-          autoRotate={true}
+          //autoRotateSpeed={0.7}
+          //autoRotate={true}
           maxDistance={1}
           screenSpacePanning={false} />
       </Canvas>
@@ -58,9 +58,9 @@ function Model({ url }) {
   }, [])
   return (
     <mesh
-      position={[0, 0.05, 0.15]}
+      position={[0, 0.055, 0.05]}
       rotation={[0, 0, 0]}
-      scale={[0.15 / 1024, 0.15 / 1024, 0.15 / 1024]}
+      scale={[0.5 / 1024, 0.5 / 1024, 0.5 / 1024]}
     >
       <group ref={group} dispose={null}>
         <primitive
